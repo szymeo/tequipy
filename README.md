@@ -1,59 +1,13 @@
 # TequipyOffboarding
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+### Design Assumptions:
 
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Employees are used solely in offboarding domain, other domains using them doesn't exist.
+- Mixing equipment and employee domains becomes a tech debt as soon as we add another view using either of those, so for sake of simplicity I assumed we'll never have more than one view.
+- App has just one view, so we don't need modules lazy loading.
+- To simulate be<->fe communication, I used IndexedDB instead of api (it's as well async) to save your time and deploy live demo online.
+- We'll not have other domains, so it doesn't make sense to put things into shared domain (like generic types).
+- Since it's interview, code will be reviewed hollistically, so there's no need to split it into commits following SRP.
+- We don't have GraphQL. With GQL we could be using different design for the FE codebase (simpler, less scalable), but it's CRUD and not content-heavy platform, so we can put a bit more responsibility of data management to the client side.
+- We don't have EventStore. I can imagine we could wish to log all transactions around the offboarding process, undo/redo easily, but described API doesn't indicate such pattern.
+- Because of bounded-context, we don't need to prefix enums (e.g. EmployeeStatus instead of Status), resulting in Employee entity having field with EmployeeStatus type.
