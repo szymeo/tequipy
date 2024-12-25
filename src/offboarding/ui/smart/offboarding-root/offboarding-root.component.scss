@@ -1,0 +1,11 @@
+@use '@angular/material' as mat;
+
+@include mat.table-overrides((
+    background-color: white,
+    row-item-outline-color: #ebebeb,
+));
+
+@include mat.form-field-overrides((
+    filled-container-shape: 1.1rem,
+    filled-container-color: white,
+));

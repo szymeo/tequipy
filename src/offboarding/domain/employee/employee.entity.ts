@@ -1,19 +1,49 @@
 import { Status as Status } from './status.enum';
-import { Email } from '../vo/email.vo';
-import { StringId } from '../vo/string-id.vo';
 import { Department } from './department.enum';
-import { RawEmployee } from '../../infrastructure/responses/raw-employee';
+import { RawEmployee } from './raw-employee';
+import { Email } from '../../../shared/vo/email.vo';
+import { StringId } from '../../../shared/vo/string-id.vo';
 
 export class Employee {
   constructor(
-    public readonly id: StringId,
-    public readonly name: string,
-    public readonly email: Email,
-    public readonly department: Department,
-    public readonly status: Status
+    public _id: StringId,
+    public _name: string,
+    public _email: Email,
+    public _department: Department,
+    public _status: Status,
+    public _equipments: StringId[]
   ) {
-    this.validateDepartment(department);
+    this.validateDepartment(_department);
+    this.validateStatus(_status);
+  }
+
+  get id(): StringId {
+    return this._id;
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
+  get email(): Email {
+    return this._email;
+  }
+
+  get department(): Department {
+    return this._department;
+  }
+
+  set status(status: Status) {
     this.validateStatus(status);
+    this._status = status;
+  }
+
+  get status(): Status {
+    return this._status;
+  }
+
+  get equipments(): StringId[] {
+    return this._equipments;
   }
 
   static fromRaw(raw: RawEmployee): Employee {
@@ -22,7 +52,8 @@ export class Employee {
       raw.name,
       Email.fromRaw(raw.email),
       raw.department as Department,
-      raw.status as Status
+      raw.status as Status,
+      raw.equipments.map(StringId.fromRaw)
     );
   }
 

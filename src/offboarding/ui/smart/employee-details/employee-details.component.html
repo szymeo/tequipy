@@ -1,0 +1,60 @@
+<div class="flex items-center justify-start p-4">
+  <a [routerLink]="['/offboarding']" mat-button draggable="false">
+    <mat-icon
+      aria-label="Back to employees list icon"
+      fontIcon="chevron_left"
+      iconPositionStart
+    ></mat-icon>
+
+    Back to employees list
+  </a>
+</div>
+
+<div class="flex flex-col px-10">
+  <div class="flex items-center justify-between p-4">
+    <h2 class="text-3xl font-semibold">{{ employee.name }}</h2>
+
+    <button
+      (click)="offboardEmployee(employee.id)"
+      [disabled]="employee.status === Status.OFFBOARDED"
+      mat-flat-button
+      appBlurOnClick
+    >
+      Offboard
+    </button>
+  </div>
+
+  <div class="flex w-full">
+    <div class="flex flex-col items-start justify-start p-4 w-1/2">
+      <h3 class="text-xl text-gray-700 mb-4 border-b w-full text-left pb-2">
+        Details
+      </h3>
+
+      <p>
+        <span class="font-semibold text-sm text-gray-900">Email:</span>
+        {{ employee.email.value }}
+      </p>
+      <p>
+        <span class="font-semibold text-sm text-gray-900">Department:</span>
+        {{ employee.department }}
+      </p>
+      <p>
+        <span class="font-semibold text-sm text-gray-900">Status:</span>
+        {{ employee.status }}
+      </p>
+    </div>
+
+    <div class="flex flex-col items-start justify-start p-4 w-1/2">
+      <h3 class="text-xl text-gray-700 mb-4 border-b w-full text-left pb-2">
+        Equipment
+      </h3>
+
+      <p
+        *ngFor="let equipment of employee.equipments"
+        class="font-semibold text-gray-900"
+      >
+        {{ resolveEquipment(equipment.value).name }}
+      </p>
+    </div>
+  </div>
+</div>

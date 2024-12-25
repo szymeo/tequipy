@@ -1,0 +1,112 @@
+<div class="p-2 pb-0 w-full flex items-center">
+  <mat-form-field class="w-full">
+    <mat-label>Filter by {{ displayedColumns.value.join(", ") }}</mat-label>
+    <input
+      (keyup)="onFilterChanged($event)"
+      matInput
+      [placeholder]="'Search anything...'"
+      #input
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Columns</mat-label>
+    <mat-select
+      (valueChange)="onColumnVisibilityChanged($event)"
+      [formControl]="displayedColumns"
+      multiple
+    >
+      @for (column of availableColumns; track column) {
+      <mat-option [value]="column">{{ column }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="overflow-auto px-4">
+  <table
+    (matSortChange)="onSortChanged($event)"
+    [dataSource]="dataSource"
+    [matSortDirection]="sort.direction"
+    [matSortActive]="sort.active"
+    mat-table
+    matSort
+  >
+    <ng-container [matColumnDef]="ListColumn.NAME">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
+      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="ListColumn.EMAIL">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+      <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="ListColumn.DEPARTMENT">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
+      <td mat-cell *matCellDef="let row">{{ row.department }}</td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="ListColumn.EQUIPMENTS">
+      <th mat-header-cell *matHeaderCellDef>Equipment</th>
+      <td mat-cell *matCellDef="let row">{{ row.equipments.length }}</td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="ListColumn.STATUS">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td class="font-semibold text-xs" *matCellDef="let row" mat-cell>
+        <div
+          [ngClass]="
+            {
+              ACTIVE: 'text-green-500 bg-green-100/90',
+              OFFBOARDED: 'text-orange-400 bg-orange-100/90'
+            }[row.status]
+          "
+          class="rounded-full w-fit p-1 px-3"
+        >
+          {{ row.status }}
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="ListColumn.DETAILS">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <a
+          [routerLink]="['/offboarding/', row.id]"
+          mat-button
+          draggable="false"
+        >
+          Details
+
+          <mat-icon
+            aria-label="View employee details icon"
+            fontIcon="chevron_right"
+            iconPositionEnd
+          ></mat-icon>
+        </a>
+      </td>
+    </ng-container>
+
+    <tr
+      mat-header-row
+      *matHeaderRowDef="
+        displayedColumns.value.concat([ListColumn.DETAILS]);
+        sticky: true
+      "
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="
+        let row;
+        columns: displayedColumns.value.concat([ListColumn.DETAILS])
+      "
+    ></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell p-4" colspan="4">
+        No data matching the filter "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+</div>

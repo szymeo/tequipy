@@ -1,5 +1,5 @@
-import { Employee } from '../../domain/employee/employee.entity';
-import { RawEmployee } from '../responses/raw-employee';
+import { Employee } from '../../../domain/employee/employee.entity';
+import { RawEmployee } from '../../../domain/employee/raw-employee';
 
 export class EmployeeMapper {
   static fromRaw(rawEmployee: RawEmployee): Employee {

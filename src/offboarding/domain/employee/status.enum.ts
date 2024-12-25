@@ -1,4 +1,4 @@
 export enum Status {
-  ACTIVE = 'active',
-  OFFBOARDED = 'offboarded',
+  ACTIVE = 'ACTIVE',
+  OFFBOARDED = 'OFFBOARDED',
 }

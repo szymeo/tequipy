@@ -1,5 +1,5 @@
-import { Equipment } from '../../domain/equipment/equipment.entity';
-import { RawEquipment } from '../responses/raw-equipment';
+import { Equipment } from '../../../domain/equipment/equipment.entity';
+import { RawEquipment } from '../../../domain/equipment/raw-equipment';
 
 export class EquipmentMapper {
   static fromRaw(rawEquipment: RawEquipment): Equipment {

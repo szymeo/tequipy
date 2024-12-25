@@ -1,4 +1,5 @@
-import { ValidationError } from '../generic/errors/validation-error';
+import { ValidationError } from '../errors/validation-error';
+import { ValueObject } from './value-object';
 
 type Value = string;
 
