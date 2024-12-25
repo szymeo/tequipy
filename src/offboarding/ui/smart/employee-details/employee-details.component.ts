@@ -13,7 +13,6 @@ import { OffboardingFormData } from '../../../domain/offboarding-form.model';
   selector: 'app-employee-details',
   standalone: false,
   templateUrl: './employee-details.component.html',
-  styleUrl: './employee-details.component.scss',
   host: {
     class: 'flex flex-col h-full w-full',
   },

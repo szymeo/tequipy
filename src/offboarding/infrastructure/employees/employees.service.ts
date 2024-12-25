@@ -8,29 +8,12 @@ export class EmployeesService {
   constructor(private readonly employeesApi: TequipyAPI) {}
 
   load(): Promise<Employee[]> {
-    return this.employeesApi.fetchAllEmployees().then((rawEmployees) => {
-      console.log('rawEmployees', rawEmployees);
-      return rawEmployees.map((raw) => Employee.fromRaw(raw));
-    });
+    return this.employeesApi
+      .fetchAllEmployees()
+      .then((rawEmployees) => rawEmployees.map(Employee.fromRaw));
   }
 
   offboard(id: string, payload: OffboardingFormData): Promise<void> {
     return this.employeesApi.offboardEmployee(id, payload);
   }
-
-  //   get(id: string) {
-  //     return this.employeesDB.get(id);
-  //   }
-
-  //   create(employee: Employee) {
-  //     return this.employeesDB.create(employee);
-  //   }
-
-  //   update(employee: Employee) {
-  //     return this.employeesDB.update(employee);
-  //   }
-
-  //   delete(id: string) {
-  //     return this.employeesDB.delete(id);
-  //   }
 }

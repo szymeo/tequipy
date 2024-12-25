@@ -2,9 +2,8 @@ import { Injectable, signal } from '@angular/core';
 import { Department } from '../domain/employee/department.enum';
 import { Employee } from '../domain/employee/employee.entity';
 import { Status } from '../domain/employee/status.enum';
-import { EmployeesService } from '../infrastructure/employees/employees.service';
-import { Sort } from '@angular/material/sort';
 import { OffboardingFormData } from '../domain/offboarding-form.model';
+import { EmployeesService } from '../infrastructure/employees/employees.service';
 
 type State = {
   employees: Map<string, Employee>;

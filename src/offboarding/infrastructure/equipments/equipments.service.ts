@@ -9,24 +9,6 @@ export class EquipmentsService {
   load(): Promise<Equipment[]> {
     return this.equipmentsApi
       .fetchAllEquipments()
-      .then((rawEquipments) =>
-        rawEquipments.map((raw) => Equipment.fromRaw(raw))
-      );
+      .then((rawEquipments) => rawEquipments.map(Equipment.fromRaw));
   }
-
-  //   get(id: string) {
-  //     return this.employeesDB.get(id);
-  //   }
-
-  //   create(employee: Employee) {
-  //     return this.employeesDB.create(employee);
-  //   }
-
-  //   update(employee: Employee) {
-  //     return this.employeesDB.update(employee);
-  //   }
-
-  //   delete(id: string) {
-  //     return this.employeesDB.delete(id);
-  //   }
 }

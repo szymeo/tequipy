@@ -19,7 +19,6 @@ import { ListColumn } from '../../../domain/list-column.enum';
   selector: 'app-employees-list',
   standalone: false,
   templateUrl: './employees-list.component.html',
-  styleUrl: './employees-list.component.scss',
   host: {
     class: 'flex flex-col h-full w-full',
   },

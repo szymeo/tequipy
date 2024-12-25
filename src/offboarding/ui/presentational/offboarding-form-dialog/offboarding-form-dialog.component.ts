@@ -15,7 +15,6 @@ type DialogData = {
   selector: 'app-offboarding-form-dialog',
   standalone: false,
   templateUrl: './offboarding-form-dialog.component.html',
-  styleUrl: './offboarding-form-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OffboardingFormDialogComponent {
