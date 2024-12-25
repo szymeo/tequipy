@@ -14,7 +14,7 @@ import { EquipmentsState } from '../../../application/equipments.state';
   styleUrl: './offboarding-root.component.scss',
   host: {
     class:
-      'flex flex-col w-1/2 mx-auto h-full bg-white shadow rounded-3xl overflow-hidden items-center justify-center',
+      'flex flex-col w-10/12 max-w-7xl mx-auto h-full bg-white shadow rounded-3xl overflow-hidden items-center justify-center',
   },
   standalone: false,
   encapsulation: ViewEncapsulation.None,
