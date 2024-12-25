@@ -2,7 +2,7 @@
 
 ### Design Assumptions:
 
-- Mixing equipment and employee domains becomes a tech debt as soon as we add another view using either of those, so for sake of simplicity I assumed we'll not have another domain.
+- Mixing equipment and employee domains becomes a tech debt as soon as we add another domain using either of those, so for sake of simplicity I assumed we'll not have another domain.
 - To simulate be<->fe communication, I used IndexedDB instead of api (it's as well async) to save your time and deploy live demo online.
 - Since code will be reviewed hollistically, there's no need to split it into commits following SRP.
 - We don't have GraphQL. With GQL we could be using different design for the FE codebase (simpler, less scalable), but it's CRUD and not content-heavy platform, so we can put a bit more responsibility of data management to the client side.
