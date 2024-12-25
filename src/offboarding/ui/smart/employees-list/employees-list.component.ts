@@ -2,16 +2,18 @@ import {
   ChangeDetectionStrategy,
   Component,
   effect,
+  HostBinding,
   signal,
   ViewChild,
 } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { fadeInOutRightLeft } from '../../../../shared/ui/animations';
 import {
   EmployeeQuery,
   EmployeesState,
 } from '../../../application/employees.state';
-import { FormControl } from '@angular/forms';
 import { ListFiltersState } from '../../../application/list-filters.state';
 import { ListColumn } from '../../../domain/list-column.enum';
 
@@ -20,11 +22,13 @@ import { ListColumn } from '../../../domain/list-column.enum';
   standalone: false,
   templateUrl: './employees-list.component.html',
   host: {
-    class: 'flex flex-col h-full w-full',
+    class: 'flex flex-col h-full w-full absolute',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [fadeInOutRightLeft],
 })
 export class EmployeesListComponent {
+  @HostBinding('@fadeInOutRightLeft') fadeInOutRightLeft = true;
   availableColumns: ListColumn[] = [
     ListColumn.NAME,
     ListColumn.EMAIL,

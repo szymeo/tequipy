@@ -4,6 +4,7 @@
 
 - Table sorting
 - Offboarding employees
+- Columns selection
 - Filters memoization (runtime memory)
 
 ### Design Assumptions:

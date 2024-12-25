@@ -12,7 +12,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { BlurOnClickModule } from '../shared/directives/blur-on-click.module';
+import { BlurOnClickModule } from '../shared/ui/directives/blur-on-click.module';
 import { EmployeesState } from './application/employees.state';
 import { EquipmentsState } from './application/equipments.state';
 import { TequipyAPI } from './infrastructure/tequipy.api';

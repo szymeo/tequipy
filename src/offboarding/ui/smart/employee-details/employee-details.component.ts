@@ -1,24 +1,27 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { EmployeesState } from '../../../application/employees.state';
-import { injectParams } from 'ngxtension/inject-params';
-import { EquipmentsState } from '../../../application/equipments.state';
-import { Equipment } from '../../../domain/equipment/equipment.entity';
-import { Status } from '../../../domain/employee/status.enum';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { OffboardingFormDialogComponent } from '../../presentational/offboarding-form-dialog/offboarding-form-dialog.component';
+import { injectParams } from 'ngxtension/inject-params';
+import { fadeInOutLeftRight } from '../../../../shared/ui/animations';
 import { StringId } from '../../../../shared/vo/string-id.vo';
+import { EmployeesState } from '../../../application/employees.state';
+import { EquipmentsState } from '../../../application/equipments.state';
+import { Status } from '../../../domain/employee/status.enum';
+import { Equipment } from '../../../domain/equipment/equipment.entity';
 import { OffboardingFormData } from '../../../domain/offboarding-form.model';
+import { OffboardingFormDialogComponent } from '../../presentational/offboarding-form-dialog/offboarding-form-dialog.component';
 
 @Component({
   selector: 'app-employee-details',
   standalone: false,
   templateUrl: './employee-details.component.html',
   host: {
-    class: 'flex flex-col h-full w-full',
+    class: 'flex flex-col h-full w-full absolute',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [fadeInOutLeftRight],
 })
 export class EmployeeDetailsComponent {
+  @HostBinding('@fadeInOutLeftRight') fadeInOutLeftRight = true;
   protected readonly Status = Status;
   private readonly employeeId = injectParams('employeeId');
 
