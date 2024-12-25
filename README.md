@@ -1,5 +1,11 @@
 # TequipyOffboarding
 
+### Features
+
+- Table sorting
+- Offboarding employees
+- Filters memoization (runtime memory)
+
 ### Design Assumptions:
 
 - Mixing equipment and employee domains becomes a tech debt as soon as we add another domain using either of those, so for sake of simplicity I assumed we'll not have another domain.

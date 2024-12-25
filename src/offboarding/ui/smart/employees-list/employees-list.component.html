@@ -2,6 +2,7 @@
   <mat-form-field class="w-full">
     <mat-label>Filter by {{ displayedColumns.value.join(", ") }}</mat-label>
     <input
+      [(ngModel)]="filter"
       (keyup)="onFilterChanged($event)"
       matInput
       [placeholder]="'Search anything...'"

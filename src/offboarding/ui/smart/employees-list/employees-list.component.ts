@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   effect,
+  signal,
   ViewChild,
 } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
@@ -32,6 +33,7 @@ export class EmployeesListComponent {
     ListColumn.EQUIPMENTS,
     ListColumn.STATUS,
   ];
+  filter = signal('');
   displayedColumns = new FormControl(this.availableColumns);
   dataSource: MatTableDataSource<EmployeeQuery>;
   readonly ListColumn = ListColumn;
@@ -102,7 +104,8 @@ export class EmployeesListComponent {
   }
 
   private _restoreFilter() {
-    const filter = this.listFiltersState.filter;
+    const { filter } = this.listFiltersState;
     this.dataSource.filter = filter;
+    this.filter.set(filter);
   }
 }
